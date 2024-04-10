@@ -1,0 +1,197 @@
+{
+  "name": "tool_bar",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "gXENp0zQGyLE35HI334leR",
+    "node": "17:221",
+    "version": "5504625004",
+    "component-id": "3ca943c24a65060ad5dd83b7de885987ba675da2"
+  },
+  "default": "ToolBar",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "image",
+        "id": "Maps"
+      },
+      {
+        "type": "image",
+        "id": "Plus"
+      },
+      {
+        "type": "text",
+        "id": "AppTitle"
+      },
+      {
+        "type": "image",
+        "id": "Menu"
+      }
+    ],
+    "modes": {
+      "ToolBar": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": false,
+            "children": [
+              "Maps",
+              "Plus",
+              "AppTitle",
+              "Menu"
+            ],
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 93.44262295081968,
+              "saturation": 0.31282051282051276,
+              "value": 0.7647058823529411
+            },
+            "clip-content": false
+          },
+          {
+            "id": "Maps",
+            "margin": {
+              "left": 312.0,
+              "top": 9.0,
+              "right": 8.0,
+              "bottom": 11.0
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "image-content": "$ActivityMaps",
+            "scale": "contain"
+          },
+          {
+            "id": "Plus",
+            "margin": {
+              "left": 265.0,
+              "top": 8.0,
+              "right": 52.0,
+              "bottom": 10.0
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "image-content": "$AddActivity",
+            "scale": "contain"
+          },
+          {
+            "id": "AppTitle",
+            "margin": {
+              "left": 65.0,
+              "top": 13.0,
+              "right": 99.0,
+              "bottom": 10.0
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "font-weight": 700.0,
+            "color": {
+              "alpha": 1.0,
+              "hue": 94.28571428571428,
+              "saturation": 0.3684210526315789,
+              "value": 0.2980392156862745
+            },
+            "text-content": "$AppTitle",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": 24.0,
+            "line-height": 1.2102272510528564,
+            "typeface": "Inter"
+          },
+          {
+            "id": "Menu",
+            "margin": {
+              "left": 14.0,
+              "top": 9.0,
+              "right": 306.0,
+              "bottom": 9.0
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "image-content": "$Menu",
+            "scale": "contain"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "ActivityMaps": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    },
+    "AddActivity": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    },
+    "AppTitle": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "Menu": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "ToolBar",
+      "size": {
+        "width": 355.0,
+        "height": 62.0
+      },
+      "parameters": {
+        "ActivityMaps": "maps.png",
+        "AddActivity": "plus.png",
+        "AppTitle": "Health Tracker",
+        "Menu": "menu.png"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

@@ -1,0 +1,310 @@
+{
+  "name": "activity_list",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "gXENp0zQGyLE35HI334leR",
+    "node": "11:174",
+    "version": "5504600235",
+    "component-id": "bba81f03ed74ab086a096a7fe8b31f02b9658023"
+  },
+  "default": "ActivityList",
+  "documentation": "Activity List",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "Calories"
+      },
+      {
+        "type": "group",
+        "id": "Duration"
+      },
+      {
+        "type": "group",
+        "id": "DateTime"
+      },
+      {
+        "type": "group",
+        "id": "ActivityImage"
+      },
+      {
+        "type": "text",
+        "id": "Calories1"
+      },
+      {
+        "type": "text",
+        "id": "Duration1"
+      },
+      {
+        "type": "text",
+        "id": "DateTime1"
+      },
+      {
+        "type": "image",
+        "id": "ActivityImage1"
+      }
+    ],
+    "modes": {
+      "ActivityList": {
+        "rules": [
+          {
+            "id": "top_level",
+            "tap-handler": "$on ActivityList tapped",
+            "stroke-width": 1.0,
+            "stroke-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.0
+            },
+            "is-structured": false,
+            "children": [
+              "Calories",
+              "Duration",
+              "DateTime",
+              "ActivityImage"
+            ]
+          },
+          {
+            "id": "Calories",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 233.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 60.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 101.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 31.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Calories1"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Duration",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 112.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 60.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 101.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 31.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Duration1"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "DateTime",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 113.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 18.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 221.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 30.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "DateTime1"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "ActivityImage",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 2.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 12.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 90.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 90.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "ActivityImage1"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Calories1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "text-content": "$Calories",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align": "left",
+            "text-size": 12.0,
+            "line-height": 1.2102272510528564,
+            "typeface": "Inter"
+          },
+          {
+            "id": "Duration1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "text-content": "$Duration",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align": "left",
+            "text-size": 12.0,
+            "line-height": 1.2102272510528564,
+            "typeface": "Inter"
+          },
+          {
+            "id": "DateTime1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "text-content": "$DateTime",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align": "left",
+            "text-size": 12.0,
+            "line-height": 1.2102272510528564,
+            "typeface": "Inter"
+          },
+          {
+            "id": "ActivityImage1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "image-content": "$ActivityImage",
+            "scale": "contain"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "on ActivityList tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "Calories": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "Duration": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "DateTime": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "ActivityImage": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "ActivityList",
+      "size": {
+        "width": 355.0,
+        "height": 115.0
+      },
+      "parameters": {
+        "Calories": "Calories",
+        "Duration": "Duration",
+        "DateTime": "DateTime",
+        "ActivityImage": "activity_image.png"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
