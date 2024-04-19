@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "gXENp0zQGyLE35HI334leR",
     "node": "17:221",
-    "version": "5504625004",
+    "version": "5580846257",
     "component-id": "3ca943c24a65060ad5dd83b7de885987ba675da2"
   },
   "default": "ToolBar",
@@ -18,11 +18,7 @@
       },
       {
         "type": "image",
-        "id": "Maps"
-      },
-      {
-        "type": "image",
-        "id": "Plus"
+        "id": "Menu"
       },
       {
         "type": "text",
@@ -30,7 +26,11 @@
       },
       {
         "type": "image",
-        "id": "Menu"
+        "id": "Plus"
+      },
+      {
+        "type": "image",
+        "id": "Maps"
       }
     ],
     "modes": {
@@ -38,13 +38,25 @@
         "rules": [
           {
             "id": "top_level",
-            "is-structured": false,
+            "padding": 8.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
             "children": [
-              "Maps",
-              "Plus",
+              "Menu",
               "AppTitle",
-              "Menu"
+              "Plus",
+              "Maps"
             ],
+            "item-spacing": 11.0,
             "background-color": {
               "alpha": 1.0,
               "hue": 93.44262295081968,
@@ -54,63 +66,31 @@
             "clip-content": false
           },
           {
-            "id": "Maps",
-            "margin": {
-              "left": 312.0,
-              "top": 9.0,
-              "right": 8.0,
-              "bottom": 11.0
-            },
+            "id": "Menu",
+            "tap-handler": "$on Menu tapped",
             "size-constraints": {
               "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": 1.0
+                "sizing-mode": "fixed",
+                "value": 35.0
               },
               "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": 1.0
+                "sizing-mode": "fixed",
+                "value": 44.0
               }
             },
-            "image-content": "$ActivityMaps",
-            "scale": "contain"
-          },
-          {
-            "id": "Plus",
-            "margin": {
-              "left": 265.0,
-              "top": 8.0,
-              "right": 52.0,
-              "bottom": 10.0
-            },
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": 1.0
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": 1.0
-              }
-            },
-            "image-content": "$AddActivity",
+            "image-content": "$Menu",
             "scale": "contain"
           },
           {
             "id": "AppTitle",
-            "margin": {
-              "left": 65.0,
-              "top": 13.0,
-              "right": 99.0,
-              "bottom": 10.0
-            },
             "size-constraints": {
               "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": 1.0
+                "sizing-mode": "fixed",
+                "value": 191.0
               },
               "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": 1.0
+                "sizing-mode": "fixed",
+                "value": 39.0
               }
             },
             "font-weight": 700.0,
@@ -130,24 +110,35 @@
             "typeface": "Inter"
           },
           {
-            "id": "Menu",
-            "margin": {
-              "left": 14.0,
-              "top": 9.0,
-              "right": 306.0,
-              "bottom": 9.0
-            },
+            "id": "Plus",
+            "tap-handler": "$on Plus tapped",
             "size-constraints": {
               "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": 1.0
+                "sizing-mode": "fixed",
+                "value": 38.0
               },
               "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": 1.0
+                "sizing-mode": "fixed",
+                "value": 44.0
               }
             },
-            "image-content": "$Menu",
+            "image-content": "$AddActivity",
+            "scale": "contain"
+          },
+          {
+            "id": "Maps",
+            "tap-handler": "$on Maps tapped",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 35.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 42.0
+              }
+            },
+            "image-content": "$ActivityMaps",
             "scale": "contain"
           }
         ]
@@ -155,13 +146,13 @@
     }
   },
   "parameters": {
-    "ActivityMaps": {
+    "Menu": {
       "data-type": "image",
       "required": false,
       "description": ""
     },
-    "AddActivity": {
-      "data-type": "image",
+    "on Menu tapped": {
+      "data-type": "void-callback",
       "required": false,
       "description": ""
     },
@@ -170,8 +161,23 @@
       "required": false,
       "description": ""
     },
-    "Menu": {
+    "AddActivity": {
       "data-type": "image",
+      "required": false,
+      "description": ""
+    },
+    "on Plus tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "ActivityMaps": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    },
+    "on Maps tapped": {
+      "data-type": "void-callback",
       "required": false,
       "description": ""
     }
@@ -181,13 +187,13 @@
       "design": "ToolBar",
       "size": {
         "width": 355.0,
-        "height": 62.0
+        "height": 60.0
       },
       "parameters": {
-        "ActivityMaps": "maps.png",
-        "AddActivity": "plus.png",
+        "Menu": "menu.png",
         "AppTitle": "Health Tracker",
-        "Menu": "menu.png"
+        "AddActivity": "plus.png",
+        "ActivityMaps": "maps.png"
       }
     }
   ],
