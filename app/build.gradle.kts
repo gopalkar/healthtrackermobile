@@ -5,6 +5,7 @@ plugins {
     id("kotlin-parcelize")
     id("com.google.relay") version ("0.3.11")
     id("com.google.gms.google-services")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -42,6 +43,7 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"
@@ -63,7 +65,13 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("com.google.firebase:firebase-auth:22.3.1")
+    implementation("com.google.firebase:firebase-auth-ktx:21.0.1")
+    implementation("com.google.android.material:material:1.11.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
     testImplementation("junit:junit:4.13.2")
     implementation("com.google.code.gson:gson:2.9.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -74,5 +82,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("com.jakewharton.timber:timber:5.0.1")
     implementation("com.github.ajalt:timberkt:1.5.1")
-
+    implementation("androidx.navigation:navigation-compose:2.4.0")
+    implementation("com.google.firebase:firebase-database-ktx:20.1.0")
+    implementation("com.squareup.picasso:picasso:2.71828")
+    implementation ("io.coil-kt:coil-compose:1.4.0")
+    //implementation("com.google.firebase:firebase-appcheck:21.0.1")
 }

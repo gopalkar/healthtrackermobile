@@ -1,0 +1,260 @@
+{
+  "name": "tool_bar_add_activity",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "gXENp0zQGyLE35HI334leR",
+    "node": "116:111",
+    "version": "5631052596",
+    "component-id": "9de6f9121253b281fa6023850085516c7a6eb022"
+  },
+  "default": "ToolBarAddActivity",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "Go Back"
+      },
+      {
+        "type": "text",
+        "id": "AppTitle"
+      },
+      {
+        "type": "group",
+        "id": "Ok"
+      },
+      {
+        "type": "group",
+        "id": "Cancel"
+      },
+      {
+        "type": "image",
+        "id": "GoBackIcon"
+      },
+      {
+        "type": "image",
+        "id": "OkIcon"
+      },
+      {
+        "type": "image",
+        "id": "CancelIcon"
+      }
+    ],
+    "modes": {
+      "ToolBarAddActivity": {
+        "rules": [
+          {
+            "id": "top_level",
+            "padding": 8.0,
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "Go Back",
+              "AppTitle",
+              "Ok",
+              "Cancel"
+            ],
+            "item-spacing": 11.0,
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 93.44262295081968,
+              "saturation": 0.31282051282051276,
+              "value": 0.7647058823529411
+            },
+            "clip-content": false
+          },
+          {
+            "id": "Go Back",
+            "tap-handler": "$on Go Back tapped",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 45.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 50.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "GoBackIcon"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "AppTitle",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 184.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 41.0
+              }
+            },
+            "font-weight": 700.0,
+            "color": {
+              "alpha": 1.0,
+              "hue": 94.28571428571428,
+              "saturation": 0.3684210526315789,
+              "value": 0.2980392156862745
+            },
+            "text-content": "$AppTitle text content",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": 24.0,
+            "line-height": 1.2102272510528564,
+            "typeface": "Inter"
+          },
+          {
+            "id": "Ok",
+            "tap-handler": "$on Ok tapped",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 45.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 45.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "OkIcon"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Cancel",
+            "tap-handler": "$on Cancel tapped",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 43.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 43.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "CancelIcon"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "GoBackIcon",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "image-content": "$GoBackIcon image content",
+            "scale": "contain"
+          },
+          {
+            "id": "OkIcon",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "image-content": "$OkIcon image content",
+            "scale": "contain"
+          },
+          {
+            "id": "CancelIcon",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "image-content": "$CancelIcon image content",
+            "scale": "contain"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "on Go Back tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "AppTitle text content": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "on Ok tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "on Cancel tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "GoBackIcon image content": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    },
+    "OkIcon image content": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    },
+    "CancelIcon image content": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "ToolBarAddActivity",
+      "size": {
+        "width": 360.0,
+        "height": 64.0
+      },
+      "parameters": {
+        "AppTitle text content": "Health Tracker",
+        "GoBackIcon image content": "go_back_icon.png",
+        "OkIcon image content": "ok_icon.png",
+        "CancelIcon image content": "cancel_icon.png"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

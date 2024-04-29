@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@+id/loginScreen">
+
+    <fragment
+        android:id="@+id/loginScreen"
+        android:name="ie.setu.healthtracker.views.login.LoginScreen"
+        android:label="Login Screen">
+        <action
+            android:id="@+id/action_loginScreen_to_activityListView"
+            app:destination="@id/activityListView" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/activityListView"
+        android:name="ie.setu.healthtracker.views.activitylist.ActivityListView"
+        android:label="ActivityListView" />
+
+</navigation>

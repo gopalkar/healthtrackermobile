@@ -1,0 +1,91 @@
+{
+  "name": "signup_button",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "gXENp0zQGyLE35HI334leR",
+    "node": "72:112",
+    "version": "5597069252",
+    "component-id": "a4d2e9fab35eb2e6ad2585f6f5a623865b352505"
+  },
+  "default": "SignupButton",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "text",
+        "id": "Signup"
+      }
+    ],
+    "modes": {
+      "SignupButton": {
+        "rules": [
+          {
+            "id": "top_level",
+            "padding": 10.0,
+            "border-radius": 10.0,
+            "drop-shadow": {
+              "color": {
+                "alpha": 0.4980392156862745,
+                "hue": 205.0,
+                "saturation": 0.5106382978723404,
+                "value": 0.9215686274509803
+              },
+              "blur": 4.0,
+              "offset-x": 0.0,
+              "offset-y": 4.0,
+              "spread": 0.0,
+              "blend-mode": "normal"
+            },
+            "tap-handler": "$on SignupButton tapped",
+            "arrangement": "row",
+            "children": [
+              "Signup"
+            ],
+            "item-spacing": 10.0,
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 147.4468085106383,
+              "saturation": 0.6103896103896104,
+              "value": 0.6039215686274509
+            },
+            "clip-content": false
+          },
+          {
+            "id": "Signup",
+            "font-weight": 700.0,
+            "text-content": "Signup",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 16.0,
+            "line-height": 1.1729999780654907,
+            "typeface": "Work Sans"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "on SignupButton tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "SignupButton",
+      "size": {
+        "width": 131.0,
+        "height": 45.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

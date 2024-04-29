@@ -1,0 +1,233 @@
+{
+  "name": "image_and_location",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "gXENp0zQGyLE35HI334leR",
+    "node": "116:114",
+    "version": "5630997208",
+    "component-id": "c2b202c300ed912c71eaecc1658a2ff6051dcf9f"
+  },
+  "default": "ImageAndLocation",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "image",
+        "id": "ImagePicker"
+      },
+      {
+        "type": "group",
+        "id": "ImageButton"
+      },
+      {
+        "type": "group",
+        "id": "LocationButton"
+      },
+      {
+        "type": "text",
+        "id": "SelectImageBtn"
+      },
+      {
+        "type": "text",
+        "id": "SelectLocationBtn"
+      }
+    ],
+    "modes": {
+      "ImageAndLocation": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": false,
+            "children": [
+              "ImagePicker",
+              "ImageButton",
+              "LocationButton"
+            ]
+          },
+          {
+            "id": "ImagePicker",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 18.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 16.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 300.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 170.0
+              }
+            },
+            "image-content": "$ImagePicker image content",
+            "scale": "cover"
+          },
+          {
+            "id": "ImageButton",
+            "padding": 10.0,
+            "border-radius": 10.0,
+            "drop-shadow": {
+              "color": {
+                "alpha": 0.4980392156862745,
+                "hue": 205.0,
+                "saturation": 0.5106382978723404,
+                "value": 0.9215686274509803
+              },
+              "blur": 4.0,
+              "offset-x": 0.0,
+              "offset-y": 4.0,
+              "spread": 0.0,
+              "blend-mode": "normal"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 87.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 208.0
+              }
+            },
+            "tap-handler": "$on ImageButton tapped",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 154.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 32.0
+              }
+            },
+            "arrangement": "row",
+            "children": [
+              "SelectImageBtn"
+            ],
+            "item-spacing": 10.0,
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 93.44262295081968,
+              "saturation": 0.31282051282051276,
+              "value": 0.7647058823529411
+            },
+            "clip-content": false
+          },
+          {
+            "id": "LocationButton",
+            "padding": 10.0,
+            "border-radius": 10.0,
+            "drop-shadow": {
+              "color": {
+                "alpha": 0.4980392156862745,
+                "hue": 205.0,
+                "saturation": 0.5106382978723404,
+                "value": 0.9215686274509803
+              },
+              "blur": 4.0,
+              "offset-x": 0.0,
+              "offset-y": 4.0,
+              "spread": 0.0,
+              "blend-mode": "normal"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 87.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 262.0
+              }
+            },
+            "tap-handler": "$on LocationButton tapped",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 154.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 32.0
+              }
+            },
+            "arrangement": "row",
+            "children": [
+              "SelectLocationBtn"
+            ],
+            "item-spacing": 10.0,
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 93.44262295081968,
+              "saturation": 0.31282051282051276,
+              "value": 0.7647058823529411
+            },
+            "clip-content": false
+          },
+          {
+            "id": "SelectImageBtn",
+            "text-content": "Select Image",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 16.0,
+            "line-height": 1.1729999780654907,
+            "typeface": "Work Sans"
+          },
+          {
+            "id": "SelectLocationBtn",
+            "text-content": "Select Location",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 16.0,
+            "line-height": 1.1729999780654907,
+            "typeface": "Work Sans"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "ImagePicker image content": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    },
+    "on ImageButton tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "on LocationButton tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "ImageAndLocation",
+      "size": {
+        "width": 335.0,
+        "height": 315.0
+      },
+      "parameters": {
+        "ImagePicker image content": "image_picker.png"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
