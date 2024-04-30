@@ -1,5 +1,7 @@
 package ie.setu.healthtracker.views.activities
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -52,10 +54,13 @@ import ie.setu.healthtracker.toolbaraddactivity.ToolBarAddActivity
 import ie.setu.healthtracker.ui.theme.HealthTrackerTheme
 import timber.log.Timber
 import android.net.Uri
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
 import com.google.firebase.auth.FirebaseAuth
 import ie.setu.healthtracker.models.ActivityModel
 import ie.setu.healthtracker.models.Location
+import ie.setu.healthtracker.views.activitylist.ActivityListViewModel
 import ie.setu.healthtracker.views.maps.MapsActivityContract
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -77,7 +82,7 @@ class AddActivity : AppCompatActivity() {
                     //color = MaterialTheme.colorScheme.background,
                     color = Color(0xFFA1C386)
                 ) {
-                    ShowAddActivity1()
+                    ShowAddActivity()
                 }
             }
         }
@@ -91,7 +96,11 @@ class AddActivity : AppCompatActivity() {
 
     @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    fun ShowAddActivity1() {
+    fun ShowAddActivity() {
+
+        val activityListViewModel : ActivityListViewModel = viewModel()
+        val activityList by activityListViewModel.activitiesList.observeAsState()
+
         var activityDuration by remember { mutableStateOf("") }
         var activityCalories by remember { mutableStateOf("") }
         val keyboardController = LocalSoftwareKeyboardController.current
@@ -137,7 +146,10 @@ class AddActivity : AppCompatActivity() {
         MaterialTheme {
             RelayContainer {
                 ToolBarAddActivity(
-                    onGoBackTapped = {},
+                    onGoBackTapped = {
+                        setResult(Activity.RESULT_CANCELED, Intent().apply {})
+                        finish()
+                    },
                     appTitleTextContent = "Health Tracker",
                     onOkTapped = {
                         durationError = if (activityDuration.isEmpty() || activityDuration.toIntOrNull() !in 5..180) "Duration is required and (5 - 180 mins)" else ""
@@ -149,12 +161,20 @@ class AddActivity : AppCompatActivity() {
                                 errorMessage = durationError
                         } else if (caloriesError.isNotEmpty()) {
                                 errorMessage = caloriesError
-                        } else {
-                             addNewActivity(activityModel)
+                        } else if (errorMessage!!.isEmpty()) {
+                             if (addNewActivity(activityModel) == "Failed") {
+                                 errorMessage = "Add New Activity Failed, Check logs"
+                            } else {
+                                 setResult(Activity.RESULT_OK, Intent().apply {})
+                                 finish()
+                            }
                         }
                         Timber.i("ok tapped")
                     },
-                    onCancelTapped = {},
+                    onCancelTapped = {
+                        setResult(Activity.RESULT_CANCELED, Intent().apply {})
+                        finish()
+                    },
                     goBackIconImageContent = painterResource(R.drawable.tool_bar_add_activity_go_back_icon),
                     okIconImageContent = painterResource(R.drawable.tool_bar_add_activity_ok_icon),
                     cancelIconImageContent = painterResource(R.drawable.tool_bar_add_activity_cancel_icon),
@@ -312,9 +332,16 @@ class AddActivity : AppCompatActivity() {
                 }
             }
         }
-fun addNewActivity(activityModel: ActivityModel) {
-    activityViewModel.addUserActivity(
-        firebaseAuth!!.currentUser,activityModel)
+fun addNewActivity(activityModel: ActivityModel) : String {
+    var addNewActivityResult = ""
+    try {
+        activityViewModel.addUserActivity(
+            firebaseAuth!!.currentUser, activityModel
+        )
+    }catch (e: Exception) {
+        addNewActivityResult = "Failed"
+    }
+    return addNewActivityResult
 }
 
 fun getCurrentTime(): String {

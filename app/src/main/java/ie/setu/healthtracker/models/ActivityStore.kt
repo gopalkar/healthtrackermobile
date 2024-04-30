@@ -4,9 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseUser
 
 interface ActivityStore {
-    fun findAll(activityList: MutableLiveData<List<ActivityModel>>)
 
-    fun findAll(userid:String, activityList: MutableLiveData<List<ActivityModel>>)
+    fun findAll(activitiesList:
+                MutableLiveData<List<ActivityModel>>)
+    fun findAll(userid:String, activitiesList: MutableLiveData<List<ActivityModel>>)
 
     fun findById(userid:String, activityId: String, activity: MutableLiveData<List<ActivityModel>>)
 
