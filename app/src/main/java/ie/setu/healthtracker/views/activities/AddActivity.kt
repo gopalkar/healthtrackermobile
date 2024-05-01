@@ -110,7 +110,7 @@ class AddActivity : AppCompatActivity() {
 
         var activityImage by remember { mutableStateOf ( Uri.EMPTY ) }
         var activityImageHolder : Uri = activityImage
-        var activityLocation by remember { mutableStateOf(Location()) }
+        var activityLocation by remember { mutableStateOf(Location(38.8,-94.79, 17f)) }
         var errorMessage by remember { mutableStateOf<String?>(null) }
 
         var selectionMade by remember { mutableStateOf(false) }
@@ -147,7 +147,7 @@ class AddActivity : AppCompatActivity() {
             RelayContainer {
                 ToolBarAddActivity(
                     onGoBackTapped = {
-                        setResult(Activity.RESULT_CANCELED, Intent().apply {})
+                        setResult(Activity.RESULT_OK, Intent().apply {})
                         finish()
                     },
                     appTitleTextContent = "Health Tracker",
@@ -172,8 +172,12 @@ class AddActivity : AppCompatActivity() {
                         Timber.i("ok tapped")
                     },
                     onCancelTapped = {
-                        setResult(Activity.RESULT_CANCELED, Intent().apply {})
-                        finish()
+                        activityName = "Select Activity Type"
+                        activityDuration = ""
+                        activityCalories = ""
+                        activityImage = Uri.EMPTY
+                        activityLocation = Location(38.8,-94.79, 17f)
+                        //recreate()
                     },
                     goBackIconImageContent = painterResource(R.drawable.tool_bar_add_activity_go_back_icon),
                     okIconImageContent = painterResource(R.drawable.tool_bar_add_activity_ok_icon),

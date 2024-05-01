@@ -1,57 +1,58 @@
 package ie.setu.healthtracker.views.activitylist
 
-import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.launch
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.google.firebase.auth.FirebaseUser
+import coil.compose.rememberImagePainter
+import coil.size.Scale
+import com.google.relay.compose.EmptyPainter
 import com.google.relay.compose.RelayContainer
 import ie.setu.healthtracker.R
 import ie.setu.healthtracker.activitylist.ActivityList
-import ie.setu.healthtracker.helpers.FirebaseHelper
 import ie.setu.healthtracker.models.ActivityModel
 import ie.setu.healthtracker.toolbar.ToolBar
 import ie.setu.healthtracker.ui.theme.HealthTrackerTheme
-import ie.setu.healthtracker.toolbar.*
 import ie.setu.healthtracker.views.activities.AddActivity
-import ie.setu.healthtracker.views.activities.AddActivityContract
-import ie.setu.healthtracker.views.maps.MapsActivityContract
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import timber.log.Timber
+
 
 class ActivityListView : ComponentActivity() {
 
     private lateinit var activityListViewModel: ActivityListViewModel
     private lateinit var addActivityLauncher: ActivityResultLauncher<Intent>
     private val REQUEST_CODE_REFRESH = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Timber.plant(Timber.DebugTree())
@@ -64,6 +65,7 @@ class ActivityListView : ComponentActivity() {
             }
         }
         activityListViewModel = ViewModelProvider(this)[ActivityListViewModel::class.java]
+
         setContent {
             HealthTrackerTheme {
                 // A surface container using the 'background' color from the theme
@@ -153,30 +155,52 @@ fun ShowToolBar(onTapped : (String) -> Unit) {
 fun ShowActivityList() {
     val activityListViewModel : ActivityListViewModel = viewModel()
     val activityList by activityListViewModel.activitiesList.observeAsState()
+
     if (activityList != null ) {
+
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                //.padding(16.dp)
+                .offset(4.dp, 10.dp)
+                .background(Color(0x33A1C386))
         ) {
-            Timber.i("ActivityList: $activityList")
             activityList!!.forEach { activity ->
                 ShowEachActivity(activity)
             }
         }
+
     }
 }
 
 @Composable
 fun ShowEachActivity(activity: ActivityModel) {
+    Timber.i("Image String URL: ${activity.image}")
+    val imageUri : Uri = Uri.parse(activity.image)
+    var imagePainter: Painter = EmptyPainter()
+    if (imageUri == Uri.EMPTY) {
+        imagePainter = painterResource(id = R.drawable.baseline_directions_run_24)
+    } else {
+        imagePainter = rememberImagePainter(
+            data = imageUri,
+            builder = {
+                scale(Scale.FIT)
+            }
+        )
+    }
         ActivityList(
             Modifier
                 .fillMaxWidth()
                 .width(360.dp)
                 .height(115.dp),
-            "${activity.calories} Calories", "${activity.duration} Mins", "${activity.activityTime}",
-            //R.
-
+            "${activity.calories} Calories",
+            "${activity.duration} Mins",
+            "${activity.activityTime}",
+            imagePainter,
+            //painterResource(R.drawable.baseline_directions_bike_24),
+            onActivityListTapped = {}
         )
-}
+ }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {

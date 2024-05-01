@@ -87,5 +87,5 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation ("io.coil-kt:coil-compose:1.4.0")
     implementation ("androidx.compose.runtime:runtime-livedata:1.0.5")
-    //implementation("com.google.firebase:firebase-appcheck:21.0.1")
+        //implementation("com.google.firebase:firebase-appcheck:21.0.1")
 }

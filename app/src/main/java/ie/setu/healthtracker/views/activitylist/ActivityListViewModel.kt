@@ -7,6 +7,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import ie.setu.healthtracker.models.ActivityModel
 import ie.setu.healthtracker.models.FirebaseDBManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.lang.Exception
 
@@ -14,21 +18,27 @@ class ActivityListViewModel: ViewModel() {
 
     var activitiesList =
         MutableLiveData<List<ActivityModel>>()
+
     private var firebaseAuth: FirebaseAuth? = FirebaseAuth.getInstance()
+
     var liveFirebaseUser = firebaseAuth!!.currentUser
 
     init { getAllActivities() }
 
     fun refreshData() {
         getAllActivities()
+        Timber.i("Refresh : ${activitiesList.value}")
     }
     fun getAllActivities() {
         try {
             //DonationManager.findAll(liveFirebaseUser.value?.email!!, donationsList)
-            FirebaseDBManager.findAll(liveFirebaseUser!!.uid, activitiesList)
-            Timber.i("Report Load Success : ${activitiesList.value.toString()}")
+            CoroutineScope(Dispatchers.IO).launch {
+                FirebaseDBManager.findAll(liveFirebaseUser!!.uid, activitiesList)
+            }
+            Timber.i("Init : ${activitiesList.value}")
         } catch (e: Exception) {
             Timber.i("Report Load Error : $e.message")
         }
     }
+
 }

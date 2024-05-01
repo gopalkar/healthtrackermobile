@@ -41,7 +41,7 @@ class MapsActivity : ComponentActivity() {
 @Composable
 fun MapViewComponent(currentLocation: Location?) {
     val context = LocalContext.current
-    var defaultLocation = Location(51.5074, -0.1278, 10f)
+    var defaultLocation = Location(38.8,-94.79, 17f)
     if (currentLocation != null) {
         // Move camera to a default location (e.g., city center)
         defaultLocation = currentLocation

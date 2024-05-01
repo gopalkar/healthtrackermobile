@@ -17,6 +17,8 @@ object FirebaseDBManager : ActivityStore {
         TODO("Not yet implemented")
     }
     override fun findAll(userid: String, activitiesList: MutableLiveData<List<ActivityModel>>) {
+        Timber.i("Firebase DB Reference : $database")
+        Timber.i("User Id string: $userid")
         database.child("user-activities").child(userid)
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -34,6 +36,7 @@ object FirebaseDBManager : ActivityStore {
                         .removeEventListener(this)
 
                     activitiesList.value = localList
+                    Timber.i("LocalList: ${localList}")
                 }
             })
     }
