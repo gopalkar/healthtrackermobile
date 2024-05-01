@@ -36,7 +36,7 @@ object FirebaseDBManager : ActivityStore {
                         .removeEventListener(this)
 
                     activitiesList.value = localList
-                    Timber.i("LocalList: ${localList}")
+                    //Timber.i("LocalList: ${localList}")
                 }
             })
     }
@@ -73,10 +73,20 @@ object FirebaseDBManager : ActivityStore {
     }
 
     override fun delete(userid: String, activityId: String) {
-        TODO("Not yet implemented")
+        val childDelete : MutableMap<String, Any?> = HashMap()
+        childDelete["/activities/$activityId"] = null
+        childDelete["/user-activities/$userid/$activityId"] = null
+
+        database.updateChildren(childDelete)
     }
 
     override fun update(userid: String, activityId: String, activity: ActivityModel) {
-        TODO("Not yet implemented")
+        val activityValues = activity.toMap()
+
+        val childUpdate : MutableMap<String, Any?> = HashMap()
+        childUpdate["activities/$activityId"] = activityValues
+        childUpdate["user-activities/$userid/$activityId"] = activityValues
+
+        database.updateChildren(childUpdate)
     }
 }

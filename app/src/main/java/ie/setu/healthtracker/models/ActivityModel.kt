@@ -34,4 +34,5 @@ data class ActivityModel(
             "zoom" to zoom
         )
     }
+
 }

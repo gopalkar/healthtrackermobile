@@ -18,8 +18,20 @@ class AddActivityViewModel : ViewModel() {
         userActivity: ActivityModel
     ) {
         status.value = try {
-            //DonationManager.create(donation)
             FirebaseDBManager.create(firebaseUser,userActivity)
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        }
+    }
+
+    fun updateUserActivity(
+        userId: String,
+        activityId: String,
+        userActivity: ActivityModel
+    ) {
+        status.value = try {
+            FirebaseDBManager.update(userId,activityId,userActivity)
             true
         } catch (e: IllegalArgumentException) {
             false

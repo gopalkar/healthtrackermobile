@@ -23,7 +23,7 @@ class ActivityListViewModel: ViewModel() {
 
     var liveFirebaseUser = firebaseAuth!!.currentUser
 
-    init { getAllActivities() }
+    //init { getAllActivities() }
 
     fun refreshData() {
         getAllActivities()
@@ -32,12 +32,20 @@ class ActivityListViewModel: ViewModel() {
     fun getAllActivities() {
         try {
             //DonationManager.findAll(liveFirebaseUser.value?.email!!, donationsList)
-            CoroutineScope(Dispatchers.IO).launch {
                 FirebaseDBManager.findAll(liveFirebaseUser!!.uid, activitiesList)
-            }
-            Timber.i("Init : ${activitiesList.value}")
         } catch (e: Exception) {
-            Timber.i("Report Load Error : $e.message")
+            Timber.i("Activity Error : $e.message")
+        }
+    }
+
+    fun delete(userid: String, id: String) {
+        try {
+            //DonationManager.delete(userid,id)
+            FirebaseDBManager.delete(userid,id)
+            Timber.i("Activity Deleted Successfully")
+        }
+        catch (e: Exception) {
+            Timber.i("Activity Delete Error : $e.message")
         }
     }
 
