@@ -1,6 +1,10 @@
 package ie.setu.healthtracker.views.login
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
@@ -24,6 +28,9 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.relay.compose.BoxScopeInstance.boxAlign
@@ -32,6 +39,7 @@ import ie.setu.healthtracker.R
 import ie.setu.healthtracker.helpers.FirebaseHelper
 import ie.setu.healthtracker.userimagelogo.UserImageLogo
 import ie.setu.healthtracker.userimagelogo.UserImageLogoIcon
+import ie.setu.healthtracker.views.login.GoogleSignInWrapper.getGoogleSignInClient
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -169,6 +177,12 @@ fun LoginScreen(firebaseHelper: FirebaseHelper, onSuccess : () -> Unit) {
             }
         }
 
+        val googleSignInClient = GoogleSignInWrapper.getGoogleSignInClient(context)
+
+        GoogleSignInButton(googleSignInClient, onSignInSuccess = {
+                    onSuccess()
+            })
+
         errorMessage?.let { message ->
             Text(
                 text = message,
@@ -177,6 +191,43 @@ fun LoginScreen(firebaseHelper: FirebaseHelper, onSuccess : () -> Unit) {
             )
         }
 
+    }
+}
+
+@Composable
+fun GoogleSignInButton(googleSignInClient: GoogleSignInClient, onSignInSuccess: () -> Unit) {
+    val launcher =
+        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // Handle successful sign-in
+                onSignInSuccess()
+            }
+        }
+
+    val signInIntent = remember {
+        googleSignInClient.signInIntent
+    }
+
+    Column {
+        Button(onClick = { launcher.launch(signInIntent) }) {
+            // Add button text or icon as needed
+            Text("Sign in with Google")
+        }
+    }
+}
+
+object GoogleSignInWrapper {
+    @SuppressLint("StaticFieldLeak")
+    private var googleSignInClient: GoogleSignInClient? = null
+
+    fun getGoogleSignInClient(context: Context): GoogleSignInClient {
+        if (googleSignInClient == null) {
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
+            googleSignInClient = GoogleSignIn.getClient(context, gso)
+        }
+        return googleSignInClient!!
     }
 }
 
