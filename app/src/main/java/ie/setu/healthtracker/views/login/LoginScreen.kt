@@ -1,6 +1,7 @@
 package ie.setu.healthtracker.views.login
 
 import android.content.Context
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -26,8 +27,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.relay.compose.BoxScopeInstance.boxAlign
+import com.google.relay.compose.RelayContainer
 import ie.setu.healthtracker.R
 import ie.setu.healthtracker.helpers.FirebaseHelper
+import ie.setu.healthtracker.userimagelogo.UserImageLogo
+import ie.setu.healthtracker.userimagelogo.UserImageLogoIcon
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -50,6 +54,18 @@ fun LoginScreen(firebaseHelper: FirebaseHelper, onSuccess : () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+/*        MaterialTheme {
+            RelayContainer {
+                UserImageLogoIcon(modifier = Modifier
+                    .width(107.dp)
+                    .height(107.dp))
+            }
+        }*/
+        Image(
+            painter = painterResource(R.drawable.image_logo),
+            contentDescription = "Placeholder Image"
+        )
 
         Text(
             text = appName,

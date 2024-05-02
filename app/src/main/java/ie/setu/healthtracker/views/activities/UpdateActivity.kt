@@ -2,6 +2,7 @@ package ie.setu.healthtracker.views.activities
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -54,17 +55,31 @@ import ie.setu.healthtracker.toolbaraddactivity.ToolBarAddActivity
 import ie.setu.healthtracker.ui.theme.HealthTrackerTheme
 import timber.log.Timber
 import android.net.Uri
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.TimeInput
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import ie.setu.healthtracker.models.ActivityModel
 import ie.setu.healthtracker.models.EditViewModel
 import ie.setu.healthtracker.models.Location
 import ie.setu.healthtracker.views.activitylist.ActivityListViewModel
 import ie.setu.healthtracker.views.maps.MapsActivityContract
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
+import java.net.URL
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -106,7 +121,6 @@ class UpdateActivity : AppCompatActivity() {
         val activityListViewModel : ActivityListViewModel = viewModel()
         val activityList by activityListViewModel.activitiesList.observeAsState()
 
-
         var activityDuration by remember { mutableStateOf("") }
         var activityCalories by remember { mutableStateOf("") }
         val keyboardController = LocalSoftwareKeyboardController.current
@@ -114,8 +128,6 @@ class UpdateActivity : AppCompatActivity() {
         var activityName by remember { mutableStateOf("Select Activity Type") }
         val items = listOf("Running", "Walking", "Swimming", "Cycling")
 
-        var activityImage by remember { mutableStateOf ( Uri.EMPTY ) }
-        var activityImageHolder : Uri = activityImage
         var activityLocation by remember { mutableStateOf(Location(38.8,-94.79, 17f)) }
         var errorMessage by remember { mutableStateOf<String?>(null) }
 
@@ -135,42 +147,26 @@ class UpdateActivity : AppCompatActivity() {
             }
             }
 
-
-
-
-        /*if (updateCurrentActivity!= null) {
-            Timber.i("Edit Activity: $currentActivity")
-            activityName = updateCurrentActivity.activityName!!
-            activityImage = Uri.parse(updateCurrentActivity.image)
-            activityDuration = updateCurrentActivity.duration!!
-            activityCalories = updateCurrentActivity.calories!!
-            activityLocation.lat = updateCurrentActivity.lat
-            activityLocation.lng = updateCurrentActivity.lng
-            activityLocation.zoom = updateCurrentActivity.zoom
-            updateCurrentActivity = ActivityModel()
-        }*/
-
-/*        activityModel.activityName = activityName
-            activityModel.activityTime = getCurrentTime()
-            activityModel.image = activityImage.toString()
-            activityModel.duration = activityDuration
-            activityModel.calories = activityCalories
-            activityModel.lat = activityLocation.lat
-            activityModel.lng = activityLocation.lng
-            activityModel.zoom = activityLocation.zoom*/
-
         activityModel = updateCurrentActivity!!
 
-        Timber.i("Location Add Activity: $activityLocation")
-
+        Timber.i("Location Update Activity: $activityLocation")
+        var refreshState by remember { mutableStateOf(false) }
         val imageLoader =
             rememberLauncherForActivityResult(ActivityResultContracts.GetContent())
             { result ->
                   if (result != null) {
                             Timber.i("Got Result ${result}")
                       updateCurrentActivity!!.image = result.toString()
-                        } // end of if
+                      refreshState = true
+                  }
             }
+
+        LaunchedEffect(refreshState) {
+            Timber.i("Refresh Triggered")
+            delay(1000)
+            refreshState = false
+        }
+
 
         MaterialTheme {
             RelayContainer {
@@ -208,7 +204,7 @@ class UpdateActivity : AppCompatActivity() {
                         updateCurrentActivity!!.lat = 38.8
                         updateCurrentActivity!!.lng = -94.79
                         updateCurrentActivity!!.zoom = 17f
-                        //recreate()
+                        refreshState = true
                     },
                     goBackIconImageContent = painterResource(R.drawable.tool_bar_add_activity_go_back_icon),
                     okIconImageContent = painterResource(R.drawable.tool_bar_add_activity_ok_icon),
@@ -270,7 +266,7 @@ class UpdateActivity : AppCompatActivity() {
                         DropdownMenuItem(
                             text = { Text(item) },
                             onClick = {
-                                activityName = item
+                                updateCurrentActivity!!.activityName = item
                                 expanded = false
                                 selectionMade = true
                             })
@@ -316,23 +312,50 @@ class UpdateActivity : AppCompatActivity() {
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Timber.i("Update Activity Image: ${updateCurrentActivity!!.image!!}")
-            Uri.parse(updateCurrentActivity!!.image!!).let {
-                if (updateCurrentActivity!!.image!!.isNotEmpty()) {
-                    // Use Picasso to load the image if the Uri is not null or empty
-                    Image(
-                        painter = rememberImagePainter(data = Uri.parse(updateCurrentActivity!!.image!!)),
-                        contentDescription = null,
-                    )
 
-                } else {
-                    // Show a placeholder image if the Uri is null or empty
-                    Image(
-                        painter = painterResource(R.drawable.image_and_location_image_picker),
-                        contentDescription = "Placeholder Image"
-                    )
+            Box (modifier = Modifier
+                .size(350.dp, 170.dp)
+                .fillMaxSize(),
+                contentAlignment = Alignment.Center
+                ) {
+                Uri.parse(updateCurrentActivity!!.image).let { uri ->
+                    if (uri != Uri.EMPTY) {
+                       Image(
+                           painter = rememberImagePainter(data = uri),
+                           contentDescription = null,
+                           contentScale = ContentScale.Fit
+                       )
+                    } else {
+                        // Show a placeholder image if the Uri is null or empty
+                        when (updateCurrentActivity!!.activityName) {
+                            // Show a placeholder image if the Uri is null or empty
+                            "Running" -> Image(
+                                painter = painterResource(id = R.drawable.baseline_directions_run_24),
+                                contentDescription = "Placeholder Image"
+                            )
+                            "Walking" -> Image(
+                                painter = painterResource(id = R.drawable.baseline_directions_walk_24),
+                                contentDescription = "Placeholder Image"
+                            )
+                            "Cycling" -> Image(
+                                painter = painterResource(id = R.drawable.baseline_directions_bike_24),
+                                contentDescription = "Placeholder Image"
+                            )
+                            "Swimming" -> Image(
+                                painter = painterResource(id = R.drawable.vecteezy_happy_family_vacation_on_pool_vector_illustration_338574),
+                                contentDescription = "Placeholder Image"
+                            )
+                            else ->
+                                Image(
+                                    painter = painterResource(R.drawable.image_and_location_image_picker),
+                                    contentDescription = "Placeholder Image"
+                                )
+                        }
+                    }
                 }
             }
+
+            //LoadImageFromUrl(Uri.parse(updateCurrentActivity!!.image))
 
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -366,7 +389,44 @@ class UpdateActivity : AppCompatActivity() {
                 }
             }
         }
-fun updateActivity(activity: ActivityModel) : String {
+
+    private @Composable
+    fun LoadImageFromUrl(contentUri: Uri) {
+        var imageBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
+        var loading by remember { mutableStateOf(true) }
+        val context = LocalContext.current
+        LaunchedEffect(contentUri) {
+            try {
+                val context = context
+                val inputStream = context.contentResolver.openInputStream(contentUri)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                imageBitmap = bitmap.asImageBitmap()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                loading = false
+            }
+        }
+
+        Box(modifier = Modifier.fillMaxSize()
+            .size(350.dp, 170.dp)
+            .fillMaxSize()) {
+            if (loading) {
+                // Show loading indicator or placeholder while the image is loading
+            } else {
+                imageBitmap?.let { bitmap ->
+                    Image(
+                        bitmap = bitmap,
+                        contentDescription = null,
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
+        }
+    }
+
+    fun updateActivity(activity: ActivityModel) : String {
     var addNewActivityResult = ""
     try {
         activityViewModel.updateUserActivity(

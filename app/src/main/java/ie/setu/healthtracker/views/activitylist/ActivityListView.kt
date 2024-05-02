@@ -9,6 +9,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -54,12 +55,15 @@ import com.google.relay.compose.EmptyPainter
 import com.google.relay.compose.RelayContainer
 import ie.setu.healthtracker.R
 import ie.setu.healthtracker.activitylist.ActivityList
+import ie.setu.healthtracker.group6.Group6
+import ie.setu.healthtracker.helpers.FirebaseHelper
 import ie.setu.healthtracker.models.ActivityModel
 import ie.setu.healthtracker.toolbar.ToolBar
 import ie.setu.healthtracker.ui.theme.HealthTrackerTheme
 import ie.setu.healthtracker.views.activities.AddActivity
 import ie.setu.healthtracker.views.activities.UpdateActivityContract
 import ie.setu.healthtracker.views.maps.MapsActivityContract
+import ie.setu.healthtracker.views.navigation.NavDrawerActivity
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import timber.log.Timber
@@ -127,7 +131,9 @@ class ActivityListView : ComponentActivity() {
     }
 
     private fun navigationScreen() {
-        TODO("Not yet implemented")
+            val intent = Intent(this, NavDrawerActivity::class.java)
+            startActivity(intent)
+            finish()
     }
 
 /*    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -176,6 +182,7 @@ fun ShowActivityList() {
     //val context = LocalContext.current
     //val activityListViewModel : ActivityListViewModel = ViewModelProvider(LocalViewModelStoreOwner.current!!)[ActivityListViewModel::class.java]
     val activityList by activityListViewModel.activitiesList.observeAsState()
+    var refreshState by remember { mutableStateOf(false) }
 
     val updateActivityLauncher = rememberLauncherForActivityResult(UpdateActivityContract()
     ) {result  ->
@@ -207,10 +214,16 @@ fun ShowActivityList() {
                         updateActivityLauncher.launch(it)
                     })
                 }
+            refreshState = true
 
             }
         }
 
+        LaunchedEffect(refreshState) {
+            Timber.i("Refresh Triggered")
+            delay(1000)
+            refreshState = false
+        }
     }
 
 
@@ -222,8 +235,16 @@ fun ShowEachActivity(activity: ActivityModel, onDelete: (ActivityModel) -> Unit,
     var dismissState = rememberDismissState()
     val imageUri : Uri = Uri.parse(activity.image)
     var imagePainter: Painter = EmptyPainter()
+
     if (imageUri == Uri.EMPTY) {
-        imagePainter = painterResource(id = R.drawable.baseline_directions_run_24)
+        when (activity.activityName) {
+            // Show a placeholder image if the Uri is null or empty
+            "Running" -> imagePainter = painterResource(id = R.drawable.baseline_directions_run_24)
+            "Walking" -> imagePainter = painterResource(id = R.drawable.baseline_directions_walk_24)
+            "Cycling" -> imagePainter = painterResource(id = R.drawable.baseline_directions_bike_24)
+            "Swimming" -> imagePainter = painterResource(id = R.drawable.vecteezy_happy_family_vacation_on_pool_vector_illustration_338574)
+        }
+
     } else {
         imagePainter = rememberImagePainter(
             data = imageUri,
@@ -239,15 +260,6 @@ fun ShowEachActivity(activity: ActivityModel, onDelete: (ActivityModel) -> Unit,
         mutableStateOf(false)
     }
     val state = rememberDismissState(
-//        // Use this if you don't want the confirmation step
-//        confirmValueChange = { value ->
-//            if (value == DismissValue.DismissedToStart) {
-//                isRemoved = true
-//                true
-//            } else {
-//                false
-//            }
-//        },
         positionalThreshold = {
             600f // Derived thru trial and error
         })

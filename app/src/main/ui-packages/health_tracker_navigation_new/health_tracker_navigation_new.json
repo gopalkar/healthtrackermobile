@@ -1,0 +1,565 @@
+{
+  "name": "health_tracker_navigation_new",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "gXENp0zQGyLE35HI334leR",
+    "node": "177:125",
+    "version": "5674845411",
+    "component-id": "e60cc299ebfc7cbe25addf8f06dd5892a0f49bff"
+  },
+  "default": "HealthTrackerNavigationNew",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "text",
+        "id": "UserName"
+      },
+      {
+        "type": "group",
+        "id": "NavHome"
+      },
+      {
+        "type": "group",
+        "id": "NavActivity"
+      },
+      {
+        "type": "group",
+        "id": "NavNutrition"
+      },
+      {
+        "type": "group",
+        "id": "NavLogout"
+      },
+      {
+        "type": "group",
+        "id": "NavImage"
+      },
+      {
+        "type": "image",
+        "id": "Home Page"
+      },
+      {
+        "type": "text",
+        "id": "Button"
+      },
+      {
+        "type": "image",
+        "id": "Home Page1"
+      },
+      {
+        "type": "text",
+        "id": "Button1"
+      },
+      {
+        "type": "image",
+        "id": "Home Page2"
+      },
+      {
+        "type": "text",
+        "id": "Button2"
+      },
+      {
+        "type": "image",
+        "id": "Logout"
+      },
+      {
+        "type": "text",
+        "id": "Button3"
+      },
+      {
+        "type": "image",
+        "id": "NavImageLogo"
+      }
+    ],
+    "modes": {
+      "HealthTrackerNavigationNew": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": false,
+            "children": [
+              "UserName",
+              "NavHome",
+              "NavActivity",
+              "NavNutrition",
+              "NavLogout",
+              "NavImage"
+            ],
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 93.44262295081968,
+              "saturation": 0.31282051282051276,
+              "value": 0.7647058823529411
+            }
+          },
+          {
+            "id": "UserName",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 72.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 257.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 226.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 32.0
+              }
+            },
+            "font-weight": 600.0,
+            "color": {
+              "alpha": 1.0,
+              "hue": 111.3157894736842,
+              "saturation": 0.7378640776699029,
+              "value": 0.403921568627451
+            },
+            "text-content": "$UserName text content",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align-vertical": "center",
+            "text-size": 20.0,
+            "line-height": 1.2102272033691406,
+            "typeface": "Inter"
+          },
+          {
+            "id": "NavHome",
+            "padding": 10.0,
+            "border-radius": 10.0,
+            "drop-shadow": {
+              "color": {
+                "alpha": 0.4980392156862745,
+                "hue": 205.0,
+                "saturation": 0.5106382978723404,
+                "value": 0.9215686274509803
+              },
+              "blur": 4.0,
+              "offset-x": 0.0,
+              "offset-y": 4.0,
+              "spread": 0.0,
+              "blend-mode": "normal"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 58.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 341.0
+              }
+            },
+            "tap-handler": "$on NavHome tapped",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 244.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 43.0
+              }
+            },
+            "stroke-width": 1.0,
+            "stroke-color": {
+              "alpha": 1.0,
+              "hue": 205.0,
+              "saturation": 0.5106382978723404,
+              "value": 0.9215686274509803
+            },
+            "arrangement": "row",
+            "children": [
+              "Home Page",
+              "Button"
+            ],
+            "item-spacing": 10.0,
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "clip-content": false
+          },
+          {
+            "id": "NavActivity",
+            "padding": 10.0,
+            "border-radius": 10.0,
+            "drop-shadow": {
+              "color": {
+                "alpha": 0.4980392156862745,
+                "hue": 205.0,
+                "saturation": 0.5106382978723404,
+                "value": 0.9215686274509803
+              },
+              "blur": 4.0,
+              "offset-x": 0.0,
+              "offset-y": 4.0,
+              "spread": 0.0,
+              "blend-mode": "normal"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 58.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 400.0
+              }
+            },
+            "tap-handler": "$on NavActivity tapped",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 244.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 43.0
+              }
+            },
+            "stroke-width": 1.0,
+            "stroke-color": {
+              "alpha": 1.0,
+              "hue": 205.0,
+              "saturation": 0.5106382978723404,
+              "value": 0.9215686274509803
+            },
+            "arrangement": "row",
+            "children": [
+              "Home Page1",
+              "Button1"
+            ],
+            "item-spacing": 10.0,
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "clip-content": false
+          },
+          {
+            "id": "NavNutrition",
+            "padding": 10.0,
+            "border-radius": 10.0,
+            "drop-shadow": {
+              "color": {
+                "alpha": 0.4980392156862745,
+                "hue": 205.0,
+                "saturation": 0.5106382978723404,
+                "value": 0.9215686274509803
+              },
+              "blur": 4.0,
+              "offset-x": 0.0,
+              "offset-y": 4.0,
+              "spread": 0.0,
+              "blend-mode": "normal"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 58.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 459.0
+              }
+            },
+            "tap-handler": "$on NavNutrition tapped",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 244.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 43.0
+              }
+            },
+            "stroke-width": 1.0,
+            "stroke-color": {
+              "alpha": 1.0,
+              "hue": 205.0,
+              "saturation": 0.5106382978723404,
+              "value": 0.9215686274509803
+            },
+            "arrangement": "row",
+            "children": [
+              "Home Page2",
+              "Button2"
+            ],
+            "item-spacing": 10.0,
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "clip-content": false
+          },
+          {
+            "id": "NavLogout",
+            "padding": 10.0,
+            "border-radius": 10.0,
+            "drop-shadow": {
+              "color": {
+                "alpha": 0.4980392156862745,
+                "hue": 205.0,
+                "saturation": 0.5106382978723404,
+                "value": 0.9215686274509803
+              },
+              "blur": 4.0,
+              "offset-x": 0.0,
+              "offset-y": 4.0,
+              "spread": 0.0,
+              "blend-mode": "normal"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 58.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 518.0
+              }
+            },
+            "tap-handler": "$on NavLogout tapped",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 244.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 43.0
+              }
+            },
+            "stroke-width": 1.0,
+            "stroke-color": {
+              "alpha": 1.0,
+              "hue": 205.0,
+              "saturation": 0.5106382978723404,
+              "value": 0.9215686274509803
+            },
+            "arrangement": "row",
+            "children": [
+              "Logout",
+              "Button3"
+            ],
+            "item-spacing": 10.0,
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "clip-content": false
+          },
+          {
+            "id": "NavImage",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 140.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 125.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 90.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 90.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "NavImageLogo"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Home Page",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 26.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 26.0
+              }
+            },
+            "image-content": "home_page.png",
+            "scale": "contain"
+          },
+          {
+            "id": "Button",
+            "text-content": "Home",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 20.0,
+            "line-height": 1.172999954223633,
+            "typeface": "Work Sans"
+          },
+          {
+            "id": "Home Page1",
+            "presence": false,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 26.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 26.0
+              }
+            },
+            "scale": "contain"
+          },
+          {
+            "id": "Button1",
+            "text-content": "Activity",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 20.0,
+            "line-height": 1.172999954223633,
+            "typeface": "Work Sans"
+          },
+          {
+            "id": "Home Page2",
+            "presence": false,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 26.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 26.0
+              }
+            },
+            "scale": "contain"
+          },
+          {
+            "id": "Button2",
+            "text-content": "Nutrition",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 20.0,
+            "line-height": 1.172999954223633,
+            "typeface": "Work Sans"
+          },
+          {
+            "id": "Logout",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 23.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 26.0
+              }
+            },
+            "image-content": "logout.png",
+            "scale": "contain"
+          },
+          {
+            "id": "Button3",
+            "text-content": "Logout",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 20.0,
+            "line-height": 1.172999954223633,
+            "typeface": "Work Sans"
+          },
+          {
+            "id": "NavImageLogo",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "image-content": "$NavImage",
+            "scale": "contain"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "UserName text content": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "on NavHome tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "on NavActivity tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "on NavNutrition tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "on NavLogout tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "NavImage": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "HealthTrackerNavigationNew",
+      "size": {
+        "width": 360.0,
+        "height": 800.0
+      },
+      "parameters": {
+        "UserName text content": "UserName",
+        "NavImage": "nav_image_logo.png"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

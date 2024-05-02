@@ -1,0 +1,66 @@
+{
+  "name": "user_image_logo",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "gXENp0zQGyLE35HI334leR",
+    "node": "173:100",
+    "version": "5674621032",
+    "component-id": "5f92cc63fd01633614c9c0019697ae94ca4d7702"
+  },
+  "default": "UserImageLogo",
+  "documentation": "AppImage",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "vector",
+        "id": "UserImageLogoIcon"
+      }
+    ],
+    "modes": {
+      "UserImageLogo": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": false,
+            "children": [
+              "UserImageLogoIcon"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "UserImageLogoIcon",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "user_image_logo_icon.svg"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "UserImageLogo",
+      "size": {
+        "width": 107.0,
+        "height": 107.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

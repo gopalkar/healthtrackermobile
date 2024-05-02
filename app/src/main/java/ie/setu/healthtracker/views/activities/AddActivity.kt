@@ -54,7 +54,9 @@ import ie.setu.healthtracker.toolbaraddactivity.ToolBarAddActivity
 import ie.setu.healthtracker.ui.theme.HealthTrackerTheme
 import timber.log.Timber
 import android.net.Uri
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.layout.ContentScale
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
 import com.google.firebase.auth.FirebaseAuth
@@ -286,21 +288,48 @@ class AddActivity : AppCompatActivity() {
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            activityImageHolder.let { uri ->
-                Timber.i("ImageURI: $activityImageHolder")
-                if (activityImageHolder != Uri.EMPTY) {
-                    // Use Picasso to load the image if the Uri is not null or empty
-                    Image(
-                        painter = rememberImagePainter(data = activityImageHolder),
-                        contentDescription = null,
-                    )
+            Box (modifier = Modifier
+                .size(350.dp, 170.dp)
+                .fillMaxSize(),
+                contentAlignment = Alignment.Center) {
+                activityImageHolder.let { uri ->
+                    Timber.i("ImageURI: $activityImageHolder")
+                    if (activityImageHolder != Uri.EMPTY) {
+                        // Use Picasso to load the image if the Uri is not null or empty
+                        Image(
+                            painter = rememberImagePainter(data = activityImageHolder),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit
+                        )
 
-                } else {
-                    // Show a placeholder image if the Uri is null or empty
-                    Image(
-                        painter = painterResource(R.drawable.image_and_location_image_picker),
-                        contentDescription = "Placeholder Image"
-                    )
+                    } else {
+
+                        when (activityName) {
+                            // Show a placeholder image if the Uri is null or empty
+                            "Running" -> Image(
+                                painter = painterResource(id = R.drawable.baseline_directions_run_24),
+                                contentDescription = "Placeholder Image"
+                            )
+                            "Walking" -> Image(
+                                painter = painterResource(id = R.drawable.baseline_directions_walk_24),
+                                contentDescription = "Placeholder Image"
+                            )
+                            "Cycling" -> Image(
+                                painter = painterResource(id = R.drawable.baseline_directions_bike_24),
+                                contentDescription = "Placeholder Image"
+                            )
+                            "Swimming" -> Image(
+                                painter = painterResource(id = R.drawable.vecteezy_happy_family_vacation_on_pool_vector_illustration_338574),
+                                contentDescription = "Placeholder Image"
+                            )
+                            else ->
+                                Image(
+                                painter = painterResource(R.drawable.image_and_location_image_picker),
+                                contentDescription = "Placeholder Image"
+                            )
+                        }
+
+                    }
                 }
             }
 
