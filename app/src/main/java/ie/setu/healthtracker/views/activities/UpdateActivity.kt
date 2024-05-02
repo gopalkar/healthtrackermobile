@@ -66,7 +66,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
+import coil.size.Scale
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -320,8 +323,17 @@ class UpdateActivity : AppCompatActivity() {
                 ) {
                 Uri.parse(updateCurrentActivity!!.image).let { uri ->
                     if (uri != Uri.EMPTY) {
+
+                      val painter:Painter =  rememberAsyncImagePainter(
+                            ImageRequest.Builder(LocalContext.current)
+                                .data(data = uri)
+                                .crossfade(true)
+                                .apply(block = fun ImageRequest.Builder.() {
+                                    scale(Scale.FIT)
+                                }).build()
+                      )
                        Image(
-                           painter = rememberImagePainter(data = uri),
+                           painter = painter,
                            contentDescription = null,
                            contentScale = ContentScale.Fit
                        )
