@@ -29,19 +29,19 @@ class FirebaseHelper : ViewModel() {
             onSuccess : () -> Unit,
             onError : (String) -> Unit
         ) {
-            Timber.d("createAccount:$email")
+            //Timber.d("createAccount:$email")
             // [START create_user_with_email]
             firebaseAuth!!.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Timber.i("createUserWithEmail:success")
+                        //Timber.i("createUserWithEmail:success")
                         currentUser.value = firebaseAuth!!.currentUser
                         errorStatus.postValue(false)
                         onSuccess()
                     } else {
                         // If sign in fails, display a message to the user.
-                        Timber.i("Authentication failed. Please check your credentials.")
+                        //Timber.i("Authentication failed. Please check your credentials.")
                         onError("Authentication failed. Please check your credentials.")
                         errorStatus.postValue(true)
                     }
@@ -54,20 +54,20 @@ class FirebaseHelper : ViewModel() {
             onSuccess : () -> Unit,
             onError : (String) -> Unit
         ) {
-            Timber.d("signIn:$email")
+            //Timber.d("signIn:$email")
 
             // [START sign_in_with_email]
             firebaseAuth!!.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Timber.i("Login User success")
+                        //Timber.i("Login User success")
                         currentUser.value = firebaseAuth!!.currentUser
                         errorStatus.postValue(false)
                         onSuccess()
                     } else {
                         // If sign in fails, display a message to the user.
-                        Timber.i("Authentication failed. Please check your credentials.")
+                        //Timber.i("Authentication failed. Please check your credentials.")
                         onError("Authentication failed. Please check your credentials.")
                         errorStatus.postValue(true)
                     }
@@ -84,14 +84,14 @@ class FirebaseHelper : ViewModel() {
         firebaseAuth!!.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Timber.i("Login GMAIL User success")
+                    //Timber.i("Login GMAIL User success")
                     // Sign in success, update UI with the signed-in user's information
                     currentUser.value = firebaseAuth!!.currentUser
                     errorStatus.postValue(false)
                     onSuccess()
                 } else {
                     // If sign in fails, display a message to the user.
-                    Timber.i("Authentication failed. Please check your credentials.")
+                    //Timber.i("Authentication failed. Please check your credentials.")
                     onError("Authentication failed. Please check your credentials.")
                     errorStatus.postValue(true)
                 }
@@ -105,7 +105,7 @@ class FirebaseHelper : ViewModel() {
         }
 
         fun checkIfEmailRegistered(email: String): Boolean {
-            Timber.i("signIn:$email")
+            //Timber.i("signIn:$email")
             val auth = FirebaseAuth.getInstance()
             val result = auth.fetchSignInMethodsForEmail(email)
             return result.isSuccessful && result.result?.signInMethods?.isNotEmpty() == true

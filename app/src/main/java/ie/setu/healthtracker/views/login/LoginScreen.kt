@@ -258,7 +258,7 @@ object GoogleSignInWrapper {
     private var googleSignInClient: GoogleSignInClient? = null
 
     fun getGoogleSignInClient(context: Context): GoogleSignInClient {
-        Timber.i("Google SignIn Client: $googleSignInClient")
+        //Timber.i("Google SignIn Client: $googleSignInClient")
         if (googleSignInClient == null) {
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 //.requestIdToken("259316704878-9dmvjb18l5ukl3991qrp0k53gep41i0r.apps.googleusercontent.com")
@@ -266,7 +266,7 @@ object GoogleSignInWrapper {
                 .requestEmail()
                 .build()
             googleSignInClient = GoogleSignIn.getClient(context, gso)
-            Timber.i("Google SignIn Client: $googleSignInClient")
+            //Timber.i("Google SignIn Client: $googleSignInClient")
         }
         return googleSignInClient!!
     }

@@ -134,13 +134,13 @@ class AddActivity : AppCompatActivity() {
         activityModel.lng = activityLocation.lng
         activityModel.zoom = activityLocation.zoom
 
-        Timber.i("Location Add Activity: $activityLocation")
+        //Timber.i("Location Add Activity: $activityLocation")
 
         val imageLoader =
             rememberLauncherForActivityResult(ActivityResultContracts.GetContent())
             { result ->
                   if (result != null) {
-                            Timber.i("Got Result ${result}")
+                            //Timber.i("Got Result ${result}")
                             activityImage = result
                         } // end of if
             }
@@ -171,7 +171,7 @@ class AddActivity : AppCompatActivity() {
                                  finish()
                             }
                         }
-                        Timber.i("ok tapped")
+                        //Timber.i("ok tapped")
                     },
                     onCancelTapped = {
                         activityName = "Select Activity Type"
@@ -293,7 +293,7 @@ class AddActivity : AppCompatActivity() {
                 .fillMaxSize(),
                 contentAlignment = Alignment.Center) {
                 activityImageHolder.let { uri ->
-                    Timber.i("ImageURI: $activityImageHolder")
+                    //Timber.i("ImageURI: $activityImageHolder")
                     if (activityImageHolder != Uri.EMPTY) {
                         // Use Picasso to load the image if the Uri is not null or empty
                         Image(

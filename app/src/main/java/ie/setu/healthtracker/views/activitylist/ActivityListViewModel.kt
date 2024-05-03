@@ -27,14 +27,14 @@ class ActivityListViewModel: ViewModel() {
 
     fun refreshData() {
         getAllActivities()
-        Timber.i("Refresh : ${activitiesList.value}")
+        //Timber.i("Refresh : ${activitiesList.value}")
     }
     fun getAllActivities() {
         try {
             //DonationManager.findAll(liveFirebaseUser.value?.email!!, donationsList)
                 FirebaseDBManager.findAll(liveFirebaseUser!!.uid, activitiesList)
         } catch (e: Exception) {
-            Timber.i("Activity Error : $e.message")
+            //Timber.i("Activity Error : $e.message")
         }
     }
 
@@ -42,10 +42,10 @@ class ActivityListViewModel: ViewModel() {
         try {
             //DonationManager.delete(userid,id)
             FirebaseDBManager.delete(userid,id)
-            Timber.i("Activity Deleted Successfully")
+            //Timber.i("Activity Deleted Successfully")
         }
         catch (e: Exception) {
-            Timber.i("Activity Delete Error : $e.message")
+            //Timber.i("Activity Delete Error : $e.message")
         }
     }
 
