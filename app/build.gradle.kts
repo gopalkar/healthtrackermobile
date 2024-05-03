@@ -92,6 +92,6 @@ dependencies {
     implementation ("androidx.compose.runtime:runtime-livedata:1.0.5")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     implementation("io.coil-kt:coil-compose:2.6.0")
-    implementation ("com.google.android.gms:play-services-auth:21.1.0")
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
         //implementation("com.google.firebase:firebase-appcheck:21.0.1")
 }

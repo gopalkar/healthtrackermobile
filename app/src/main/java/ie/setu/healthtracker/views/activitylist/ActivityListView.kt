@@ -168,11 +168,11 @@ fun ShowToolBar(onTapped : (String) -> Unit) {
                     Timber.i("Add Clicked")
                     onTapped("Add")
                                },
-                activityMaps = painterResource(R.drawable.tool_bar_maps),
-                onMapsTapped = {
+                //activityMaps = painterResource(R.drawable.tool_bar_maps),
+                /*onMapsTapped = {
                     Timber.i("Maps Clicked")
                     onTapped("Maps")
-                               },
+                               },*/
                 modifier = Modifier.rowWeight(1.0f)
             )
         }

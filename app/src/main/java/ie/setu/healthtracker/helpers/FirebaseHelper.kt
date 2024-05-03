@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.EmailAuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import timber.log.Timber
@@ -59,7 +61,7 @@ class FirebaseHelper : ViewModel() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Timber.i("createUserWithEmail:success")
+                        Timber.i("Login User success")
                         currentUser.value = firebaseAuth!!.currentUser
                         errorStatus.postValue(false)
                         onSuccess()
@@ -71,6 +73,30 @@ class FirebaseHelper : ViewModel() {
                     }
                 }
         }
+
+    fun performLoginCred(
+        credential: AuthCredential,
+        onSuccess : () -> Unit,
+        onError : (String) -> Unit
+    ) {
+
+        // [START sign_in_with_email]
+        firebaseAuth!!.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Timber.i("Login GMAIL User success")
+                    // Sign in success, update UI with the signed-in user's information
+                    currentUser.value = firebaseAuth!!.currentUser
+                    errorStatus.postValue(false)
+                    onSuccess()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Timber.i("Authentication failed. Please check your credentials.")
+                    onError("Authentication failed. Please check your credentials.")
+                    errorStatus.postValue(true)
+                }
+            }
+    }
 
         fun logOut() {
             firebaseAuth!!.signOut()
