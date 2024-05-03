@@ -17,12 +17,12 @@ object FirebaseDBManager : ActivityStore {
         TODO("Not yet implemented")
     }
     override fun findAll(userid: String, activitiesList: MutableLiveData<List<ActivityModel>>) {
-        Timber.i("Firebase DB Reference : $database")
-        Timber.i("User Id string: $userid")
+        //Timber.i("Firebase DB Reference : $database")
+        //Timber.i("User Id string: $userid")
         database.child("user-activities").child(userid)
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
-                    Timber.i("Firebase Activity error : ${error.message}")
+                    //Timber.i("Firebase Activity error : ${error.message}")
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -46,21 +46,21 @@ object FirebaseDBManager : ActivityStore {
     }
 
     override fun create(firebaseUser: FirebaseUser?, activity: ActivityModel) {
-        Timber.i("Firebase DB Reference : $database")
-        Timber.i("Firebase User at DB Manager : ${firebaseUser!!.uid}")
+        //Timber.i("Firebase DB Reference : $database")
+        //Timber.i("Firebase User at DB Manager : ${firebaseUser!!.uid}")
         val uid = firebaseUser!!.uid
         //val uid =  "njWhV6cUrqYZhwcwiARELvI3Nmn2"
         val key = database.child("activities").push().key
         if (key == null) {
-            Timber.i("Firebase Error : Key Empty")
+            //Timber.i("Firebase Error : Key Empty")
             return
         }
         activity.uid = key
         val activityValues = activity.toMap()
 
         val childAdd = HashMap<String, Any>()
-        Timber.i("activityValues: $activityValues")
-        Timber.i("childAdd: $childAdd")
+        //Timber.i("activityValues: $activityValues")
+        //Timber.i("childAdd: $childAdd")
         try {
             childAdd["/activities/$key"] = activityValues
             childAdd["/user-activities/$uid/$key"] = activityValues

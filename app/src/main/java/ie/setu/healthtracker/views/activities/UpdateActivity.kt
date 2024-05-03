@@ -152,20 +152,20 @@ class UpdateActivity : AppCompatActivity() {
 
         activityModel = updateCurrentActivity!!
 
-        Timber.i("Location Update Activity: $activityLocation")
+        //Timber.i("Location Update Activity: $activityLocation")
         var refreshState by remember { mutableStateOf(false) }
         val imageLoader =
             rememberLauncherForActivityResult(ActivityResultContracts.GetContent())
             { result ->
                   if (result != null) {
-                            Timber.i("Got Result ${result}")
+                            //Timber.i("Got Result ${result}")
                       updateCurrentActivity!!.image = result.toString()
                       refreshState = true
                   }
             }
 
         LaunchedEffect(refreshState) {
-            Timber.i("Refresh Triggered")
+            //Timber.i("Refresh Triggered")
             delay(1000)
             refreshState = false
         }
@@ -197,7 +197,7 @@ class UpdateActivity : AppCompatActivity() {
                                  finish()
                             }
                         }
-                        Timber.i("ok tapped")
+                        //Timber.i("ok tapped")
                     },
                     onCancelTapped = {
                         updateCurrentActivity!!.activityName = "Select Activity Type"

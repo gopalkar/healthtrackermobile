@@ -163,13 +163,13 @@ fun ShowToolBar(onTapped : (String) -> Unit) {
             ToolBar(
                 menu = painterResource(R.drawable.tool_bar_menu),
                 onMenuTapped = {
-                    Timber.i("Menu Clicked")
+                    //Timber.i("Menu Clicked")
                     onTapped("Menu")
                                },
                 appTitle = "Health Tracker",
                 addActivity = painterResource(R.drawable.tool_bar_plus),
                 onPlusTapped = {
-                    Timber.i("Add Clicked")
+                    //Timber.i("Add Clicked")
                     onTapped("Add")
                                },
                 //activityMaps = painterResource(R.drawable.tool_bar_maps),
@@ -229,7 +229,7 @@ fun ShowActivityList() {
         }
 
         LaunchedEffect(refreshState) {
-            Timber.i("Refresh Triggered")
+            //Timber.i("Refresh Triggered")
             delay(1000)
             refreshState = false
         }
@@ -271,7 +271,7 @@ fun ShowEachActivity(activity: ActivityModel, onDelete: (ActivityModel) -> Unit,
             }
         }*/
 
-        Timber.i("Image String URL: ${activity.image}")
+        //Timber.i("Image String URL: ${activity.image}")
 
         imagePainter = rememberAsyncImagePainter(
             ImageRequest.Builder(LocalContext.current)

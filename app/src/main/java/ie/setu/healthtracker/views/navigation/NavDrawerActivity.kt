@@ -45,12 +45,12 @@ class NavDrawerActivity : ComponentActivity() {
         Timber.plant(Timber.DebugTree())
 
         viewModel.loginThrough.observe(this, Observer { newData ->
-            Timber.i("Login User newData: ${viewModel.loginThrough.value}")
+            //Timber.i("Login User newData: ${viewModel.loginThrough.value}")
             loginUserName = viewModel.loginThrough.value
         })
 
         var displayEmail : String? = ""
-        Timber.i("Login User: $loginUserName")
+        //Timber.i("Login User: $loginUserName")
         if (loginUserName != null) {
             displayEmail = loginUserName
         } else {

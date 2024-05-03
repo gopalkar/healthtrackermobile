@@ -112,7 +112,7 @@ fun MapViewComponent(currentLocation: Location?) {
         resultIntent.putExtra("location", defaultLocation)
         (context as? Activity)?.setResult(Activity.RESULT_OK, resultIntent)
         (context as? Activity)?.finish()
-        Timber.i("Location MapsActivity: ${defaultLocation}")
+        //Timber.i("Location MapsActivity: ${defaultLocation}")
     }
 
 /*    googleMap.setOnMarkerClickListener { marker ->
