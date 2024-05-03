@@ -29,6 +29,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Delete
@@ -70,6 +71,9 @@ import ie.setu.healthtracker.views.activities.AddActivity
 import ie.setu.healthtracker.views.activities.UpdateActivityContract
 import ie.setu.healthtracker.views.navigation.NavDrawerActivity
 import kotlinx.coroutines.delay
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import timber.log.Timber
 
 
@@ -199,13 +203,14 @@ fun ShowActivityList() {
 
 
     if (activityList != null ) {
-
+        val scrollState = rememberScrollState()
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 //.padding(16.dp)
                 .offset(4.dp, 10.dp)
-                .background(Color(0x33A1C386)),
+                .background(Color(0x33A1C386))
+                .verticalScroll(state = scrollState),
         ) {
             activityList!!.forEach { activity ->
                 ShowEachActivity(activity,
